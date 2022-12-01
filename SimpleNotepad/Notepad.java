@@ -14,28 +14,32 @@ import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
 import javax.swing.undo.UndoManager;
 
-public class Notepad implements ActionListener {
+public class Notepad implements ActionListener {  // implementing ActionListner  interface 
 	
   
-	JFrame Window ;
+	JFrame Window ;                     // Jframe provides with window of the application 
 	
 	
 	// Text Area 
-	JTextArea textArea ;
+	JTextArea textArea ;               // JTextArea provides with the editable writing / typing space inside the Jframe / Window 
 	
-	JScrollPane scrollPane ;
-	boolean wordWrapon = false ; 
+	JScrollPane scrollPane ;               // JscrollPane provides the Scroll bar to our Window  
+	
+	
+	boolean wordWrapon = false ;    // Boolean created for Wordwrap enable / disable
+	
 	
 	// Top Menu bar Components  
 	JMenuBar  menuBar ;
 	
-	JMenu menuFile,menuEdit,menuFormat,menuColor ;
+	JMenu menuFile,menuEdit,menuFormat,menuColor ;       // Top menu bar functions 
 	
 	// File Menu
-	JMenuItem iNew,iOpen,  iSave,iSaveAs, iExit ;
+	JMenuItem iNew,iOpen,  iSave,iSaveAs, iExit ;     // File menu dropdown bar functions 
 	
 	// Edit Menu
-	JMenuItem iUndo, iRedo ;
+	JMenuItem iUndo, iRedo ;            // Edit menu dropdown functions 
+	
 	
 	
 	// Format Menu 
@@ -48,7 +52,7 @@ public class Notepad implements ActionListener {
 	
 	// Color MEnu
 	
-	JMenuItem iColor1, iColor2, iColor3 ;
+	JMenuItem iColor1, iColor2, iColor3, iColor4;
 	
 	Color_Function color = new Color_Function(this);
 	
@@ -66,7 +70,7 @@ public class Notepad implements ActionListener {
 	
 	//=====================================================================
 	
-	public Notepad () {    // Notepad Constructor to initialize its attributes and other properties 
+	public Notepad () {    // Notepad Constructor to initialize its attributes , other properties and Functions  
 		
 		createwindow();
 		
@@ -86,17 +90,18 @@ public class Notepad implements ActionListener {
 		createColorMenu();
 		
 		
-		format.selectedFont = "Arial";
+		format.selectedFont = "Arial";    // Initializing default font 
 		
-		format.createFont(16);
+		format.createFont(16);      // Initializing default font size 
 		
-		format.wordWrap();
+		format.wordWrap();          // calling wordwrap function 
 		
-		color.changeColor("White");
+		color.changeColor("White");   // Initializing default theme 
 	}
 	
 	//============================================================================
 	
+	// Window function and its properties 
 	public void createwindow() {
 		
 		Window = new JFrame("JD'S Notepad");
@@ -106,12 +111,12 @@ public class Notepad implements ActionListener {
 		Window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // For CLose symbol on Top and closing the application 
 	}
 	
-	
+	// TextArea Function and its Properties 
 	public void createtextarea() {
-		
-		
+			
 		textArea = new JTextArea();
 		
+		// Special command for undo & Redoing in TextArea 
 		textArea.getDocument().addUndoableEditListener(
 				new UndoableEditListener() {
 					
@@ -121,15 +126,16 @@ public class Notepad implements ActionListener {
 				});
 				
 				
-			
+			// JScrollpane with parameterized properties  
 		scrollPane = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
-		scrollPane.setBorder(BorderFactory.createEmptyBorder());
+		scrollPane.setBorder(BorderFactory.createEmptyBorder());  // Disabling the textArea Border 
 		
 		Window.add(scrollPane);
 		
 	}
 	
+	// Menubar function and adding its sub functions 
 	public void createmenubar () {
 		
 		menuBar = new JMenuBar();
@@ -147,12 +153,14 @@ public class Notepad implements ActionListener {
 		menuBar.add(menuFormat);
 		
 		
-		menuColor = new JMenu ("Color");
+		menuColor = new JMenu ("Theme");
 		menuBar.add(menuColor);
 		
 		
 	}
 	
+	
+	// File - Menu creation and key/ buttons assigning 
 	public void createfilemenu() {
 		
 		iNew = new JMenuItem ("New");
@@ -182,6 +190,7 @@ public class Notepad implements ActionListener {
 		
 	}
 	
+	// Edit Menu creation and assigning keys/ Buttons 
 	public void createEditMenu () {
 		
 		iUndo = new JMenuItem ("Undo");
@@ -199,7 +208,7 @@ public class Notepad implements ActionListener {
 	}
 
 	
-	
+	// Format menu Creation 
 public void createFormatMenu() {
 	
 	iWrap = new JMenuItem("Word Wrap: off");
@@ -207,17 +216,17 @@ public void createFormatMenu() {
 	iWrap.setActionCommand("Word Wrap");
 	menuFormat.add(iWrap);
 	
-	menuFont = new JMenu("Font");
+	menuFont = new JMenu("Font");   // Specifying main items as new JMenu 
 	menuFormat.add(menuFont);
 	
 	menuFontSize = new JMenu("Font Size");
 	menuFormat.add(menuFontSize); 
 	
-	// adding sub menu item -> i.e Fontmenu
+	// adding sub menu item -> i.e Font menu
 	iFontArial = new JMenuItem("Arial");
 	iFontArial.addActionListener(this);
 	iFontArial.setActionCommand("Arial");
-	menuFont.add(iFontArial);
+	menuFont.add(iFontArial);                    // added to sub func Font as menuitem 
 	
 	
 	iFontCSMS = new JMenuItem("Comic Sans MS");
@@ -263,6 +272,7 @@ public void createFormatMenu() {
 	
 }
 
+// Color Menu creation 
 public void createColorMenu() {
 	
 	iColor1 = new JMenuItem("White");
@@ -280,11 +290,16 @@ public void createColorMenu() {
 	iColor3.addActionListener(this);
 	iColor3.setActionCommand("Blue");
 	menuColor.add(iColor3);
+	
+	iColor4 = new JMenuItem("Codey");
+	iColor4.addActionListener(this);
+	iColor4.setActionCommand("Codey");
+	menuColor.add(iColor4);
 }
 
 
 
-	@Override
+	@Override // ActionListner interfaces methods ( Mandatory Implementation ) 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
@@ -331,6 +346,8 @@ public void createColorMenu() {
 		case "Black" :  color.changeColor(command); break ;
 		
 		case "Blue" :  color.changeColor(command); break ;
+		
+		case "Codey" :  color.changeColor(command); break ;
 	
 		}
 		

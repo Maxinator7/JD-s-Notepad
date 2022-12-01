@@ -11,12 +11,12 @@ public class Edit_Function {
 	
 	public void Undo() {
 		
-		notepad.um.undo();
+		notepad.um.undo();   // calling UM func in Main class TextArea 
 	}
 	
 	public void redo () {
 		
-		notepad.um.redo();
+		notepad.um.redo();    // calling UM func in Main class TextArea 
 		 
 	}
 }

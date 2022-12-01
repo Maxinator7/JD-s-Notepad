@@ -45,6 +45,15 @@ public class Color_Function {
 			
 			break ; 
 		
+			
+		case "Codey" : 
+			notepad.Window.getContentPane().setBackground(Color.black);
+			
+			notepad.textArea.setBackground(Color.black);
+			
+			notepad.textArea.setForeground(Color.GREEN);
+			
+			break ; 
 		
 		}
 		

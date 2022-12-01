@@ -1,6 +1,6 @@
 package SimpleNotepad;
 
-import java.awt.Font;
+import java.awt.Font;   // Font Java Class import 
 
 public class Format_Function {
 
@@ -8,6 +8,8 @@ public class Format_Function {
 	Font arial, comicSansMS , timesNewRoman ;
 	
 	String selectedFont ;
+	
+	// Constructor of Format menu 
 	public Format_Function (Notepad notepad) {
 		
 		this.notepad = notepad ;
@@ -17,7 +19,7 @@ public class Format_Function {
 		
 		if( notepad.wordWrapon == false ) {
 			notepad.wordWrapon = true ;
-			notepad.textArea.setLineWrap(true);
+			notepad.textArea.setLineWrap(true);    // setlineWrap  wraps the text 
 			notepad.textArea.setWrapStyleWord(true);
 			notepad.iWrap.setText("Word Wrap on");
 		}else if ( notepad.wordWrapon == true) {
@@ -41,7 +43,7 @@ public class Format_Function {
 		
 	}
 	
-	
+	// Set Font func ,  its within class call to set Font format 
 	public void setFont(String font) {
 		
 		selectedFont = font ;

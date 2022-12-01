@@ -21,15 +21,17 @@ public class File_Function {
 	
 	public void newFile() {
 		
-		notepad.textArea.setText("");
-		notepad.Window.setTitle("New");
+		notepad.textArea.setText(""); // setting TexArea to blank 
+		notepad.Window.setTitle("New"); // setting Title to NEW 
 		fileName = null ;
 		fileAddress = null ;
 		
 	}
 	
+	// to open saved Text files 
 	public void open () {
 		
+		// FileDialog func is used to load files in Application window 
 		FileDialog fd = new FileDialog(notepad.Window,"Open",FileDialog.LOAD );
 	      fd.setVisible(true);
 	      
@@ -40,21 +42,21 @@ public class File_Function {
 	    	  notepad.Window.setTitle(fileName);
 	    	  
 	    	  try {
-	    		 
+	    		 // Reading text file with files address and file name as parameters 
 	    		  BufferedReader br = new BufferedReader(new FileReader(fileAddress + fileName)) ; 
 	    	  notepad.textArea.setText("");
 	    	  
-	    	  String line = null ;
+	    	  String line = null ;   // String to store files text 
 	    	  
 	    	  while ( (line = br.readLine())!= null) {
 	    		  
-	    		  notepad.textArea.append(line + "\n");
+	    		  notepad.textArea.append(line + "\n");   // appending text in String line and changing line 
 	    		   
 	    	  }
 	    	  br.close();
 	    	  }catch(Exception e) {
 	    		  
-	    		  System.out.println("File not opened");
+	    		  System.out.println("File not opened");    //  error message in console in case of invalid file name or file address  
 	    	  } 
 	      }
 	       
@@ -62,11 +64,11 @@ public class File_Function {
 	
 	 public void Save () {
 		 
-		 if (fileName == null) {
+		 if (fileName == null) {    // calling saveAs func in case of new File 
 			 SaveAs();
 			 
 		 }else {
-			 
+			  // writing text or saving text in existing file with name & address  
 			 try {
 				 FileWriter fw = new FileWriter(fileAddress + fileName);
 		    	  fw.write(notepad.textArea.getText());
@@ -75,15 +77,17 @@ public class File_Function {
 				 
 			 }catch (Exception e) {
 				 
-				 System.out.println("Somethingis wrong");
+				 System.out.println("Something is wrong");
 				 
 			 }
 		 }
    	  
      }
      
+	 // Func to save new File or existing file with new Name 
      public void SaveAs() {
    	  
+    	 // FileDialog-save meth to save new file 
    	  FileDialog fd = new FileDialog(notepad.Window,"SaveAs", FileDialog.SAVE); 
       fd.setVisible(true);
       
